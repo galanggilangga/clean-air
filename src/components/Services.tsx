@@ -1,6 +1,7 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { Video, Wind, Sparkles } from 'lucide-react';
+import BeforeAfter from './BeforeAfter';
 
 export default function Services() {
   const ref = useRef(null);
@@ -105,6 +106,10 @@ export default function Services() {
               </div>
             </motion.div>
           ))}
+        </div>
+        {/* Before / After showcase placed after services */}
+        <div className="mt-12">
+          <BeforeAfter />
         </div>
       </div>
     </section>
