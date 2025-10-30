@@ -6,6 +6,9 @@ export default function Contact() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -13,15 +16,82 @@ export default function Contact() {
     objectType: '',
     message: '',
     gdpr: false,
+    hp: '', // honeypot
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setSuccessMessage(null);
+    setErrorMessage(null);
+
+    // basic honeypot
+    if (formData.hp && formData.hp.trim() !== '') {
+      // silent success for bots
+      return;
+    }
+
     setIsSubmitting(true);
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-    setIsSubmitting(false);
-    alert('Dziękujemy! Skontaktujemy się z Tobą wkrótce.');
-    setFormData({ name: '', email: '', phone: '', objectType: '', message: '', gdpr: false });
+
+    try {
+      const SITE_KEY = import.meta.env.VITE_RECAPTCHA_SITE_KEY as string | undefined;
+      let recaptchaToken: string | undefined;
+
+      if (SITE_KEY) {
+        // load grecaptcha if needed
+        if (!(window as any).grecaptcha) {
+          await new Promise<void>((resolve) => {
+            const s = document.createElement('script');
+            s.src = `https://www.google.com/recaptcha/api.js?render=${SITE_KEY}`;
+            s.async = true;
+            s.onload = () => resolve();
+            document.head.appendChild(s);
+          });
+        }
+
+        try {
+          recaptchaToken = await (window as any).grecaptcha.execute(SITE_KEY, { action: 'contact' });
+        } catch (err) {
+          console.warn('reCAPTCHA execute failed', err);
+        }
+      }
+
+      const payload = {
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        objectType: formData.objectType,
+        message: formData.message,
+        gdpr: formData.gdpr,
+        hp: formData.hp,
+        recaptchaToken,
+      };
+
+      const FORMSPREE = import.meta.env.VITE_FORMSPREE_ENDPOINT as string | undefined;
+      if (!FORMSPREE) {
+        setErrorMessage('Brak skonfigurowanego endpointu Formspree. Ustaw VITE_FORMSPREE_ENDPOINT w zmiennych środowiskowych.');
+        setIsSubmitting(false);
+        return;
+      }
+
+      const res = await fetch(FORMSPREE, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      if (res.ok) {
+        setSuccessMessage('Dziękujemy! Skontaktujemy się z Tobą wkrótce.');
+        setFormData({ name: '', email: '', phone: '', objectType: '', message: '', gdpr: false, hp: '' });
+      } else {
+        const json = await res.json().catch(() => ({}));
+        setErrorMessage(json?.error || 'Wystąpił błąd podczas wysyłania. Spróbuj ponownie później.');
+      }
+    } catch (err) {
+      console.error(err);
+      setErrorMessage('Wystąpił błąd podczas wysyłania. Spróbuj ponownie później.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -63,7 +133,28 @@ export default function Contact() {
           >
             <div className="bg-white/10 backdrop-blur-xl rounded-2xl p-8 border border-white/20">
               <h3 className="text-2xl font-bold mb-8">Wyślij Zapytanie</h3>
+              {successMessage && (
+                <div role="status" aria-live="polite" className="mb-4 p-3 rounded-lg bg-green-600 text-white">
+                  {successMessage}
+                </div>
+              )}
+              {errorMessage && (
+                <div role="alert" aria-live="assertive" className="mb-4 p-3 rounded-lg bg-red-600 text-white">
+                  {errorMessage}
+                </div>
+              )}
               <form onSubmit={handleSubmit} className="space-y-6">
+                {/* honeypot field for bots - keep hidden */}
+                <input
+                  type="text"
+                  name="hp"
+                  value={formData.hp}
+                  onChange={handleChange}
+                  autoComplete="off"
+                  tabIndex={-1}
+                  aria-hidden
+                  className="hidden"
+                />
                 <div>
                   <label className="block text-sm font-semibold mb-2">Imię i Nazwisko *</label>
                   <input
