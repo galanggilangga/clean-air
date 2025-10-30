@@ -7,9 +7,9 @@ export default function About() {
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   const stats = [
-    { icon: Building2, end: 500, suffix: '+', label: 'Zrealizowanych Projektów' },
+    { icon: Building2, end: 20, suffix: '+', label: 'Zrealizowanych Projektów' },
     { icon: Users, end: 100, suffix: '%', label: 'Zadowolonych Klientów' },
-    { icon: Award, end: 10, suffix: '+', label: 'Lat Doświadczenia' },
+    { icon: Award, end: 3, suffix: '+', label: 'Lat Doświadczenia' },
   ];
 
   return (

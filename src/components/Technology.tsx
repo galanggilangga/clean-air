@@ -1,6 +1,8 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { Zap, Shield, Eye, Filter } from 'lucide-react';
+import rotobrushImg from '../assets/images/rotobrush.png';
+import bosImg from '../assets/images/boscleantec.png';
 
 export default function Technology() {
   const ref = useRef(null);
@@ -60,11 +62,8 @@ export default function Technology() {
                 szczotkowaniem w jednym urządzeniu.
               </p>
 
-              <div className="aspect-video bg-gradient-to-br from-orange-500/20 to-amber-500/20 rounded-xl mb-6 flex items-center justify-center border border-orange-400/30">
-                <div className="text-center">
-                  <Zap className="w-16 h-16 text-orange-400 mx-auto mb-2" />
-                  <p className="text-gray-300 font-semibold">Rotobrush BrushBeast</p>
-                </div>
+              <div className="aspect-video rounded-xl mb-6 flex items-center justify-center border border-orange-400/30 overflow-hidden bg-gradient-to-br from-orange-500/5 to-amber-500/5">
+                <img src={rotobrushImg} alt="Rotobrush BrushBeast" className="w-full h-full object-contain object-center p-4 bg-gray-800" />
               </div>
 
               <div className="space-y-4">
@@ -107,11 +106,8 @@ export default function Technology() {
                 przemysłowych.
               </p>
 
-              <div className="aspect-video bg-gradient-to-br from-blue-500/20 to-cyan-500/20 rounded-xl mb-6 flex items-center justify-center border border-blue-400/30">
-                <div className="text-center">
-                  <Shield className="w-16 h-16 text-blue-400 mx-auto mb-2" />
-                  <p className="text-gray-300 font-semibold">BOS CLEANTEC System</p>
-                </div>
+              <div className="aspect-video rounded-xl mb-6 flex items-center justify-center border border-blue-400/30 overflow-hidden bg-gradient-to-br from-blue-500/5 to-cyan-500/5">
+                <img src={bosImg} alt="BOS CLEANTEC System" className="w-full h-full object-contain object-center p-4 bg-gray-800" />
               </div>
 
               <div className="space-y-4">

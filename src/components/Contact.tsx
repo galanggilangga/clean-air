@@ -64,6 +64,9 @@ export default function Contact() {
         gdpr: formData.gdpr,
         hp: formData.hp,
         recaptchaToken,
+        // Formspree special fields to improve deliverability and reply handling
+        _replyto: formData.email,
+        _subject: `Zapytanie z formularza — ${formData.objectType || 'Ogólne'}`,
       };
 
       const FORMSPREE = import.meta.env.VITE_FORMSPREE_ENDPOINT as string | undefined;

@@ -93,12 +93,7 @@ export default function Footer() {
               &copy; {new Date().getFullYear()} Clean Air Specialists. Wszystkie prawa zastrzeżone.
             </p>
             <div className="flex gap-6 text-sm">
-              <button className="text-gray-400 hover:text-orange-400 transition-colors">
-                Polityka Prywatności
-              </button>
-              <button className="text-gray-400 hover:text-orange-400 transition-colors">
-                Regulamin
-              </button>
+              {/* Policy and Terms removed per request */}
             </div>
           </div>
         </div>
