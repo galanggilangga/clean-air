@@ -1,7 +1,10 @@
 import { motion } from 'framer-motion';
 import { ArrowRight, Shield, Award, FileCheck, Zap } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 export default function Hero() {
+  const navigate = useNavigate();
+  
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
@@ -17,81 +20,106 @@ export default function Hero() {
   ];
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-950">
-        <div className="absolute inset-0 bg-[url('https://images.pexels.com/photos/159358/hvac-air-ventilation-heating-159358.jpeg?auto=compress&cs=tinysrgb&w=1920')] bg-cover bg-center opacity-20"></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-blue-950/90 via-blue-900/70 to-blue-900/50"></div>
+    <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
+      <div className="absolute inset-0">
+        <img 
+          src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=1920&q=80"
+          alt="HVAC System"
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-900/95 via-slate-900/85 to-slate-900/70"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
       </div>
 
-      <div className="container mx-auto px-4 lg:px-8 relative z-10 pt-32 pb-20">
-        <div className="max-w-4xl mx-auto text-center">
+      <div className="container mx-auto px-4 lg:px-8 relative z-10 pt-24 pb-16">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
-              Profesjonalne Czyszczenie i Dezynfekcja Systemów Wentylacyjnych
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-indigo-500/20 border border-indigo-500/30 rounded-full text-indigo-300 text-sm font-medium mb-6">
+              <Zap className="w-4 h-4" />
+              Profesjonalne Czyszczenie HVAC
+            </div>
+            
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+              Czyste Powietrze
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-violet-400"> Dla Twojego</span> Biznesu
             </h1>
-          </motion.div>
 
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-xl md:text-2xl text-gray-200 mb-12 max-w-3xl mx-auto"
-          >
-            Gwarantujemy czyste powietrze dzięki technologiom{' '}
-            <span className="font-bold text-orange-400">Rotobrush (USA)</span> i{' '}
-            <span className="font-bold text-orange-400">BOS CLEANTEC (Finlandia)</span>
-          </motion.p>
+            <p className="text-lg md:text-xl text-slate-300 mb-8 leading-relaxed">
+              Profesjonalne czyszczenie i dezynfekcja systemów wentylacyjnych 
+              z wykorzystaniem technologii <span className="text-indigo-400 font-semibold">Rotobrush</span> i <span className="text-indigo-400 font-semibold">BOS CLEANTEC</span>
+            </p>
 
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center mb-16"
-          >
-            <motion.button
-              whileHover={{ scale: 1.05, boxShadow: '0 20px 40px rgba(245, 158, 11, 0.4)' }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => scrollToSection('contact')}
-              className="px-8 py-4 bg-gradient-to-r from-orange-500 to-amber-500 text-white text-lg font-bold rounded-lg shadow-2xl flex items-center justify-center gap-2 group"
-            >
-              Zamów Bezpłatną Inspekcję
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </motion.button>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => scrollToSection('technology')}
-              className="px-8 py-4 bg-white/10 backdrop-blur-md text-white text-lg font-bold rounded-lg border-2 border-white/30 hover:bg-white/20 transition-colors"
-            >
-              Zobacz Technologie
-            </motion.button>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-6"
-          >
-            {trustBadges.map((badge, index) => (
-              <motion.div
-                key={index}
-                whileHover={{ y: -5 }}
-                className="flex flex-col items-center gap-2 p-4 bg-white/10 backdrop-blur-md rounded-lg border border-white/20"
+            <div className="flex flex-col sm:flex-row gap-4 mb-10">
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={() => scrollToSection('contact')}
+                className="px-8 py-4 bg-gradient-to-r from-indigo-500 to-violet-500 text-white text-lg font-bold rounded-2xl shadow-2xl shadow-indigo-500/25 flex items-center justify-center gap-2 group"
               >
-                <badge.icon className="w-8 h-8 text-orange-400" />
-                <span className="text-white font-semibold text-sm">{badge.text}</span>
-              </motion.div>
-            ))}
+                Bezpłatna Wycena
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </motion.button>
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={() => navigate('/technologie')}
+                className="px-8 py-4 bg-white/5 backdrop-blur-md text-white text-lg font-semibold rounded-2xl border border-white/20 hover:bg-white/10 transition-colors"
+              >
+                Nasze Technologie
+              </motion.button>
+            </div>
+
+            <div className="grid grid-cols-2 gap-4">
+              {trustBadges.map((badge, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.6 + index * 0.1 }}
+                  className="flex items-center gap-3 p-3 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10"
+                >
+                  <badge.icon className="w-5 h-5 text-indigo-400" />
+                  <span className="text-slate-200 text-sm font-medium">{badge.text}</span>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="hidden lg:block relative"
+          >
+            <div className="relative">
+              <img 
+                src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=600&q=80"
+                alt="HVAC Cleaning"
+                className="rounded-3xl shadow-2xl w-full"
+              />
+              <div className="absolute -bottom-6 -left-6 bg-slate-800/90 backdrop-blur-xl rounded-2xl p-5 border border-slate-700">
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 bg-gradient-to-br from-indigo-500 to-violet-500 rounded-xl flex items-center justify-center">
+                    <Shield className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <p className="text-white font-bold">Certyfikat NADCA</p>
+                    <p className="text-slate-400 text-sm">Międzynarodowy standard</p>
+                  </div>
+                </div>
+              </div>
+              <div className="absolute -top-6 -right-6 bg-gradient-to-br from-indigo-500 to-violet-500 rounded-2xl p-5 shadow-xl shadow-indigo-500/25">
+                <p className="text-white text-3xl font-bold">20+</p>
+                <p className="text-indigo-100 text-sm">Projektów</p>
+              </div>
+            </div>
           </motion.div>
         </div>
       </div>
-
-      {/* Scroll hint removed to keep page cleaner — Before/After slider is shown below in 'Nasze Usługi' */}
     </section>
   );
 }

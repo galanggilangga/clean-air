@@ -1,32 +1,26 @@
-import Header from './components/Header';
-import Hero from './components/Hero';
-import About from './components/About';
-import WhyUs from './components/WhyUs';
-import Process from './components/Process';
-import Benefits from './components/Benefits';
-import Services from './components/Services';
-import Technology from './components/Technology';
-import Applications from './components/Applications';
-import Contact from './components/Contact';
-import Footer from './components/Footer';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import MainLayout from './layouts/MainLayout';
+import StartPage from './pages/StartPage';
+import AboutPage from './pages/AboutPage';
+import ServicesPage from './pages/ServicesPage';
+import TechnologyPage from './pages/TechnologyPage';
+import HVACServicesPage from './pages/HVACServicesPage';
 import BackToTop from './components/BackToTop';
 
 function App() {
   return (
-    <div className="min-h-screen">
-      <Header />
-      <Hero />
-      <About />
-      <WhyUs />
-      <Process />
-      <Benefits />
-      <Services />
-      <Technology />
-      <Applications />
-      <Contact />
-      <Footer />
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<MainLayout />}>
+          <Route index element={<StartPage />} />
+          <Route path="o-nas" element={<AboutPage />} />
+          <Route path="uslugi" element={<ServicesPage />} />
+          <Route path="technologie" element={<TechnologyPage />} />
+          <Route path="klimatyzacja" element={<HVACServicesPage />} />
+        </Route>
+      </Routes>
       <BackToTop />
-    </div>
+    </BrowserRouter>
   );
 }
 
