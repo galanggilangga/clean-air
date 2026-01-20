@@ -7,6 +7,9 @@ import {
 import heroBg from '../assets/images/hero-6.webp';
 import rekuperacjaImg from '../assets/images/hero-8.webp';
 
+// Import local images from implementations
+const implementations = Object.values(import.meta.glob('../assets/images/implementations/*.webp', { eager: true, query: '?url', import: 'default' })) as string[];
+
 export default function HVACServicesPage() {
   const services = [
     {
@@ -237,7 +240,7 @@ export default function HVACServicesPage() {
         </div>
       </section>
 
-      {/* Main Services */}
+      {/* Realizations Gallery */}
       <section className="py-20 bg-slate-800">
         <div className="container mx-auto px-4 lg:px-8">
           <motion.div
@@ -246,49 +249,38 @@ export default function HVACServicesPage() {
             className="text-center mb-16"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Nasze Specjalizacje
+              Nasze Realizacje
             </h2>
             <p className="text-lg text-slate-300 max-w-2xl mx-auto">
-              Główny obszar, w którym jesteśmy ekspertami
+              Zobacz jakość naszej pracy w praktyce
             </p>
           </motion.div>
 
-          {services.map((service, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
-              className={`grid lg:grid-cols-2 gap-12 items-center ${index !== 0 ? 'mt-20' : ''}`}
-            >
-              <div className={index % 2 === 1 ? 'lg:order-2' : ''}>
-                <div className="relative">
-                  <img 
-                    src={service.image}
-                    alt={service.title}
-                    className="rounded-3xl shadow-2xl w-full aspect-[4/3] object-cover"
-                  />
-                  <div className="absolute top-6 left-6 bg-white rounded-xl px-4 py-2 shadow-lg">
-                    <service.icon className="w-6 h-6 text-emerald-600 inline mr-2" />
-                    <span className="font-semibold text-slate-900">{service.title}</span>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {implementations.map((img, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: (index % 3) * 0.1 }}
+                className="group relative overflow-hidden rounded-2xl aspect-[4/3] cursor-pointer shadow-xl border border-white/5"
+              >
+                <img
+                  src={img}
+                  alt={`Realizacja ${index + 1}`}
+                  loading="lazy"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                  <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                    <span className="text-emerald-400 font-medium text-sm block mb-1">Realizacja</span>
+                    <span className="text-white font-bold text-lg">Projekt #{index + 1}</span>
                   </div>
                 </div>
-              </div>
-              <div className={index % 2 === 1 ? 'lg:order-1' : ''}>
-                <h3 className="text-3xl font-bold text-white mb-2">{service.title}</h3>
-                <p className="text-emerald-400 font-medium mb-4">{service.subtitle}</p>
-                <p className="text-lg text-slate-300 mb-8 leading-relaxed">{service.description}</p>
-                <div className="grid sm:grid-cols-2 gap-4">
-                  {service.features.map((feature, i) => (
-                    <div key={i} className="flex items-center gap-3 bg-slate-700/50 rounded-xl p-4 border border-slate-600">
-                      <CheckCircle className="w-5 h-5 text-emerald-400 flex-shrink-0" />
-                      <span className="text-slate-200 text-sm font-medium">{feature}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
