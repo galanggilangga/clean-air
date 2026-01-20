@@ -190,13 +190,28 @@ export default function TabNavigation() {
                 Projektowanie • Doradztwo • Montaż
               </NavLink>
               <hr className="my-2 border-slate-800" />
-              <a
-                href="tel:+48123456789"
-                className="flex items-center gap-3 px-4 py-3 text-slate-300"
-              >
-                <Phone className="w-5 h-5 text-indigo-400" />
-                <span className="font-semibold">+48 123 456 789</span>
-              </a>
+              <div className="flex flex-col gap-1">
+                <a
+                  href="tel:+48123456789"
+                  className="flex items-center gap-3 px-4 py-2 text-slate-300 hover:text-white transition-colors"
+                >
+                  <Wind className="w-5 h-5 text-blue-400" />
+                  <div className="flex flex-col">
+                    <span className="font-semibold text-sm">+48 123 456 789</span>
+                    <span className="text-[10px] text-blue-400 uppercase tracking-wider font-bold">Czyszczenie i Serwis</span>
+                  </div>
+                </a>
+                <a
+                  href="tel:+48987654321"
+                  className="flex items-center gap-3 px-4 py-2 text-slate-300 hover:text-white transition-colors"
+                >
+                  <Snowflake className="w-5 h-5 text-emerald-400" />
+                  <div className="flex flex-col">
+                    <span className="font-semibold text-sm">+48 987 654 321</span>
+                    <span className="text-[10px] text-emerald-400 uppercase tracking-wider font-bold">Projektowanie i Montaż</span>
+                  </div>
+                </a>
+              </div>
               <button
                 onClick={() => {
                   setIsMobileMenuOpen(false);

@@ -48,9 +48,9 @@ export default function Footer() {
             <h4 className="font-bold mb-4 text-slate-200">Kontakt</h4>
             <ul className="space-y-3">
               <li className="flex items-center gap-2 text-sm">
-                <Phone className="w-4 h-4 text-indigo-400" />
-                <a href="tel:+48123456789" className="text-slate-400 hover:text-indigo-400 transition-colors">
-                  +48 123 456 789
+                <Wind className="w-4 h-4 text-blue-400" />
+                <a href="tel:+48123456789" className="text-slate-400 hover:text-blue-400 transition-colors">
+                  +48 123 456 789 <span className="text-xs text-blue-500">Czyszczenie i Serwis</span>
                 </a>
               </li>
               <li className="flex items-center gap-2 text-sm">
