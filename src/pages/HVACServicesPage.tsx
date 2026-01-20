@@ -1,8 +1,10 @@
-import { motion } from 'framer-motion';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Wind, Wrench, ClipboardCheck, Phone, 
   CheckCircle, Shield, 
-  Calendar, Clock, Award, TrendingUp, Users, MapPin, Building2, Home, Factory
+  Calendar, Clock, Award, TrendingUp, Users, MapPin, Building2, Home, Factory,
+  X, ChevronLeft, ChevronRight, ZoomIn
 } from 'lucide-react';
 import heroBg from '../assets/images/hero-6.webp';
 import rekuperacjaImg from '../assets/images/hero-8.webp';
@@ -11,6 +13,25 @@ import rekuperacjaImg from '../assets/images/hero-8.webp';
 const implementations = Object.values(import.meta.glob('../assets/images/implementations/*.webp', { eager: true, query: '?url', import: 'default' })) as string[];
 
 export default function HVACServicesPage() {
+  const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
+
+  const openLightbox = (index: number) => setSelectedImageIndex(index);
+  const closeLightbox = () => setSelectedImageIndex(null);
+  
+  const showNextImage = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (selectedImageIndex !== null) {
+      setSelectedImageIndex((prev) => (prev !== null ? (prev + 1) % implementations.length : null));
+    }
+  };
+
+  const showPrevImage = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (selectedImageIndex !== null) {
+      setSelectedImageIndex((prev) => (prev !== null ? (prev - 1 + implementations.length) % implementations.length : null));
+    }
+  };
+
   const services = [
     {
       icon: Wind,
@@ -264,18 +285,18 @@ export default function HVACServicesPage() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: (index % 3) * 0.1 }}
-                className="group relative overflow-hidden rounded-2xl aspect-[4/3] cursor-pointer shadow-xl border border-white/5"
+                onClick={() => openLightbox(index)}
+                className="group relative overflow-hidden rounded-2xl aspect-[4/3] cursor-zoom-in shadow-xl border border-white/5 bg-slate-900"
               >
                 <img
                   src={img}
                   alt={`Realizacja ${index + 1}`}
                   loading="lazy"
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                  <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                    <span className="text-emerald-400 font-medium text-sm block mb-1">Realizacja</span>
-                    <span className="text-white font-bold text-lg">Projekt #{index + 1}</span>
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
+                  <div className="w-12 h-12 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transform scale-50 group-hover:scale-100 transition-all duration-300 border border-white/20">
+                    <ZoomIn className="w-6 h-6 text-white" />
                   </div>
                 </div>
               </motion.div>
@@ -283,6 +304,58 @@ export default function HVACServicesPage() {
           </div>
         </div>
       </section>
+
+      {/* Lightbox */}
+      <AnimatePresence>
+        {selectedImageIndex !== null && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={closeLightbox}
+            className="fixed inset-0 z-[60] bg-slate-950/95 backdrop-blur-sm flex items-center justify-center p-4"
+          >
+            <button
+              onClick={closeLightbox}
+              className="absolute top-4 right-4 md:top-8 md:right-8 p-2 text-slate-400 hover:text-white transition-colors bg-white/5 rounded-full z-50 hover:bg-white/10"
+            >
+              <X className="w-8 h-8 md:w-10 md:h-10" />
+            </button>
+
+            <button
+              onClick={showPrevImage}
+              className="absolute left-2 md:left-8 top-1/2 -translate-y-1/2 p-2 md:p-3 text-white bg-white/10 hover:bg-white/20 rounded-full backdrop-blur-sm transition-all z-50 border border-white/10"
+            >
+              <ChevronLeft className="w-6 h-6 md:w-8 md:h-8" />
+            </button>
+
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              onClick={(e) => e.stopPropagation()}
+              className="relative max-w-7xl max-h-[90vh] w-full"
+            >
+              <img
+                src={implementations[selectedImageIndex]}
+                alt="Realizacja pełny ekran"
+                className="w-full h-full max-h-[90vh] object-contain rounded-lg shadow-2xl"
+              />
+            </motion.div>
+
+            <button
+              onClick={showNextImage}
+              className="absolute right-2 md:right-8 top-1/2 -translate-y-1/2 p-2 md:p-3 text-white bg-white/10 hover:bg-white/20 rounded-full backdrop-blur-sm transition-all z-50 border border-white/10"
+            >
+              <ChevronRight className="w-6 h-6 md:w-8 md:h-8" />
+            </button>
+            
+            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-slate-400 text-sm md:text-base font-medium bg-black/50 px-4 py-2 rounded-full backdrop-blur-md">
+              {selectedImageIndex + 1} / {implementations.length}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Brands - Premium Section */}
       <section className="py-20 bg-slate-900">
