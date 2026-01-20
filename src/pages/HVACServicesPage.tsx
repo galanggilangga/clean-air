@@ -1,29 +1,14 @@
 import { motion } from 'framer-motion';
 import { 
-  Wind, Snowflake, Wrench, ClipboardCheck, Phone, 
-  CheckCircle, Shield, ThermometerSun, 
+  Wind, Wrench, ClipboardCheck, Phone, 
+  CheckCircle, Shield, 
   Calendar, Clock, Award, TrendingUp, Users, MapPin, Building2, Home, Factory
 } from 'lucide-react';
 import heroBg from '../assets/images/hero-6.webp';
-import klimaImg from '../assets/images/hero-7.webp';
 import rekuperacjaImg from '../assets/images/hero-8.webp';
-import pompyImg from '../assets/images/hero-9.webp';
 
 export default function HVACServicesPage() {
   const services = [
-    {
-      icon: Snowflake,
-      title: 'Klimatyzacja',
-      subtitle: 'Chłodzenie i ogrzewanie',
-      description: 'Kompleksowa instalacja klimatyzacji dla domów, biur i obiektów przemysłowych. Nowoczesne urządzenia inwerterowe - chłodzenie latem, ogrzewanie zimą z najwyższą efektywnością energetyczną.',
-      image: klimaImg,
-      features: [
-        'Klimatyzatory split i multi-split',
-        'Klimatyzacja kanałowa i kasetonowa',
-        'Systemy VRF/VRV dla dużych obiektów',
-        'Klimatyzacja precyzyjna serwerowni',
-      ],
-    },
     {
       icon: Wind,
       title: 'Rekuperacja',
@@ -37,26 +22,13 @@ export default function HVACServicesPage() {
         'Automatyka i sterowanie Smart Home',
       ],
     },
-    {
-      icon: ThermometerSun,
-      title: 'Pompy Ciepła',
-      subtitle: 'Ekologiczne i ekonomiczne ogrzewanie',
-      description: 'Montaż nowoczesnych pomp ciepła powietrze-woda, gruntowych i hybrydowych. Efektywne ogrzewanie i chłodzenie z wykorzystaniem odnawialnych źródeł energii. Wysoki współczynnik COP.',
-      image: pompyImg,
-      features: [
-        'Pompy ciepła powietrze-woda',
-        'Pompy ciepła gruntowe i wodne',
-        'Systemy hybrydowe z kotłem gazowym',
-        'Pomoc w uzyskaniu dofinansowania',
-      ],
-    },
   ];
 
   const serviceTypes = [
     {
       icon: Wrench,
       title: 'Montaż',
-      description: 'Profesjonalna instalacja klimatyzacji, rekuperacji i pomp ciepła z gwarancją do 5 lat.',
+      description: 'Profesjonalna instalacja rekuperacji z gwarancją do 5 lat.',
       color: 'from-emerald-500 to-teal-600',
     },
     {
@@ -99,7 +71,7 @@ export default function HVACServicesPage() {
         <div className="absolute inset-0">
           <img 
             src={heroBg} 
-            alt="Instalacja klimatyzacji"
+            alt="Instalacja rekuperacji"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-slate-900/95 via-slate-900/85 to-transparent"></div>
@@ -123,7 +95,7 @@ export default function HVACServicesPage() {
             </motion.a>
             <p className="text-sm text-white/80 font-medium max-w-[220px] mx-auto">
               Bezpośredni numer do działu<br />
-              <span className="text-emerald-400">Klimatyzacji, Rekuperacji i Pomp Ciepła</span>
+              <span className="text-emerald-400">Rekuperacji</span>
             </p>
           </motion.div>
 
@@ -134,12 +106,10 @@ export default function HVACServicesPage() {
               transition={{ duration: 0.8 }}
             >
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-                Klimatyzacja
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-400"> Rekuperacja</span>
-                <br />Pompy Ciepła
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-400">Rekuperacja</span>
               </h1>
               <p className="text-xl text-slate-300 mb-8 leading-relaxed">
-                Kompleksowe usługi klimatyzacyjne, wentylacyjne i grzewcze dla domów, biur i przemysłu. 
+                Kompleksowe usługi wentylacyjne dla domów, biur i przemysłu. 
                 Profesjonalny montaż, serwis i doradztwo od certyfikowanych specjalistów.
               </p>
               
@@ -170,7 +140,7 @@ export default function HVACServicesPage() {
                   <Phone className="w-6 h-6 text-white" />
                   <span className="text-xl font-bold text-white">+48 987 654 321</span>
                 </div>
-                <span className="text-emerald-100 text-sm text-center">Bezpośredni numer do działu<br />Klimatyzacji, Rekuperacji i Pomp Ciepła</span>
+                <span className="text-emerald-100 text-sm text-center">Bezpośredni numer do działu<br />Rekuperacji</span>
               </motion.a>
             </motion.div>
           </div>
@@ -211,7 +181,7 @@ export default function HVACServicesPage() {
               Zakres Naszych Usług
             </h2>
             <p className="text-lg text-slate-300 max-w-2xl mx-auto">
-              Kompleksowa obsługa klimatyzacji, rekuperacji i pomp ciepła - od projektu po serwis
+              Kompleksowa obsługa rekuperacji - od projektu po serwis
             </p>
           </motion.div>
 
@@ -247,7 +217,7 @@ export default function HVACServicesPage() {
             className="text-center mb-10"
           >
             <h3 className="text-2xl font-bold text-white mb-2">Obsługujemy Wszystkie Sektory</h3>
-            <p className="text-emerald-100">Klimatyzacja, rekuperacja i pompy ciepła dla każdego typu obiektu</p>
+            <p className="text-emerald-100">Systemy rekuperacji dla każdego typu obiektu</p>
           </motion.div>
           <div className="grid md:grid-cols-3 gap-6">
             {clientTypes.map((client, index) => (
@@ -279,7 +249,7 @@ export default function HVACServicesPage() {
               Nasze Specjalizacje
             </h2>
             <p className="text-lg text-slate-300 max-w-2xl mx-auto">
-              Trzy główne obszary, w których jesteśmy ekspertami
+              Główny obszar, w którym jesteśmy ekspertami
             </p>
           </motion.div>
 
@@ -335,7 +305,7 @@ export default function HVACServicesPage() {
               Instalujemy i Serwisujemy m.in.
             </h2>
             <p className="text-lg text-slate-300 max-w-2xl mx-auto">
-              Współpracujemy z wiodącymi producentami klimatyzacji, rekuperacji i pomp ciepła na świecie
+              Współpracujemy z wiodącymi producentami rekuperacji na świecie
             </p>
           </motion.div>
 
@@ -379,7 +349,7 @@ export default function HVACServicesPage() {
             className="text-center max-w-3xl mx-auto"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              Potrzebujesz Klimatyzacji, Rekuperacji lub Pompy Ciepła?
+              Potrzebujesz Rekuperacji?
             </h2>
             <p className="text-xl text-slate-400 mb-10">
               Skontaktuj się z nami. Bezpłatna wycena i profesjonalne doradztwo.

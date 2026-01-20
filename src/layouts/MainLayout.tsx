@@ -6,7 +6,7 @@ import Footer from '../components/Footer';
 
 export default function MainLayout() {
   const location = useLocation();
-  const isHVACPage = location.pathname === '/klimatyzacja';
+  const isHVACPage = location.pathname === '/rekuperacja';
 
   // Scroll to top on route change
   useEffect(() => {

@@ -16,7 +16,7 @@ function App() {
           <Route path="o-nas" element={<AboutPage />} />
           <Route path="uslugi" element={<ServicesPage />} />
           <Route path="technologie" element={<TechnologyPage />} />
-          <Route path="klimatyzacja" element={<HVACServicesPage />} />
+          <Route path="rekuperacja" element={<HVACServicesPage />} />
         </Route>
       </Routes>
       <BackToTop />

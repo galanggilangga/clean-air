@@ -175,7 +175,7 @@ export default function HeroCarousel() {
       </div>
 
       {/* Content with animated text */}
-      <div className="container mx-auto px-4 lg:px-8 relative z-10">
+      <div className="container mx-auto px-14 lg:px-8 relative z-10">
         <div className="max-w-3xl">
           {/* Fixed height container to prevent layout shift */}
           <div className="min-h-[180px] md:min-h-[160px] mb-6 overflow-hidden">

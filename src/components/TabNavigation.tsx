@@ -24,8 +24,6 @@ export default function TabNavigation() {
   const tabs = [
     { label: 'Start', path: '/' },
     { label: 'O nas', path: '/o-nas' },
-    { label: 'Usługi', path: '/uslugi' },
-    { label: 'Technologie', path: '/technologie' },
   ];
 
   return (
@@ -82,32 +80,41 @@ export default function TabNavigation() {
               </NavLink>
             ))}
             
-            {/* Highlighted Klimatyzacja Tab */}
+            {/* Blue Cleaning Tab */}
             <NavLink
-              to="/klimatyzacja"
+              to="/uslugi"
               className={({ isActive }) =>
-                `relative flex items-center gap-1.5 xl:gap-2 px-3 xl:px-4 py-2 text-xs xl:text-sm font-semibold rounded-lg transition-all ml-2 whitespace-nowrap ${
+                `relative flex items-center gap-1.5 xl:gap-2 px-2 xl:px-3 py-1.5 xl:py-2 text-[10px] xl:text-xs font-semibold rounded-lg transition-all ml-1 xl:ml-2 whitespace-nowrap ${
+                  isActive
+                    ? 'text-white bg-gradient-to-r from-blue-500 to-indigo-500 shadow-lg shadow-blue-500/25'
+                    : 'text-blue-400 bg-blue-500/10 hover:bg-blue-500/20 border border-blue-500/30'
+                }`
+              }
+            >
+              <Wind className="w-3 h-3 xl:w-3.5 xl:h-3.5 flex-shrink-0" />
+              <span className="hidden 2xl:inline">Czyszczenie • Serwis</span>
+              <span className="2xl:hidden">Czyszczenie</span>
+            </NavLink>
+
+            {/* Highlighted Rekuperacja Tab */}
+            <NavLink
+              to="/rekuperacja"
+              className={({ isActive }) =>
+                `relative flex items-center gap-1.5 xl:gap-2 px-2 xl:px-3 py-1.5 xl:py-2 text-[10px] xl:text-xs font-semibold rounded-lg transition-all ml-1 xl:ml-2 whitespace-nowrap ${
                   isActive
                     ? 'text-white bg-gradient-to-r from-emerald-500 to-teal-500 shadow-lg shadow-emerald-500/25'
                     : 'text-emerald-400 bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30'
                 }`
               }
             >
-              <Snowflake className="w-3.5 h-3.5 xl:w-4 xl:h-4 flex-shrink-0" />
-              <span className="hidden 2xl:inline">Klimatyzacja • Rekuperacja • Pompy</span>
-              <span className="hidden xl:inline 2xl:hidden">Klima • Rekuperacja</span>
-              <span className="xl:hidden">Klima</span>
+              <Snowflake className="w-3 h-3 xl:w-3.5 xl:h-3.5 flex-shrink-0" />
+              <span className="hidden 2xl:inline">Projektowanie • Doradztwo • Montaż</span>
+              <span className="hidden xl:inline 2xl:hidden">Proj. • Doradztwo • Montaż</span>
+              <span className="xl:hidden">Proj. • Montaż</span>
             </NavLink>
           </nav>
 
           <div className="hidden lg:flex items-center gap-4">
-            <a
-              href="tel:+48123456789"
-              className="flex items-center gap-2 text-slate-300 hover:text-white transition-colors"
-            >
-              <Phone className="w-4 h-4" />
-              <span className="text-sm font-medium">+48 123 456 789</span>
-            </a>
             <motion.a
               href="#contact"
               whileHover={{ scale: 1.02 }}
@@ -157,7 +164,20 @@ export default function TabNavigation() {
                 </NavLink>
               ))}
               <NavLink
-                to="/klimatyzacja"
+                to="/uslugi"
+                className={({ isActive }) =>
+                  `flex items-center gap-2 px-4 py-3 rounded-lg font-semibold transition-all ${
+                    isActive
+                      ? 'text-white bg-gradient-to-r from-blue-500 to-indigo-500'
+                      : 'text-blue-400 bg-blue-500/10 border border-blue-500/30'
+                  }`
+                }
+              >
+                <Wind className="w-5 h-5" />
+                Czyszczenie • Serwis
+              </NavLink>
+              <NavLink
+                to="/rekuperacja"
                 className={({ isActive }) =>
                   `flex items-center gap-2 px-4 py-3 rounded-lg font-semibold transition-all ${
                     isActive
@@ -167,7 +187,7 @@ export default function TabNavigation() {
                 }
               >
                 <Snowflake className="w-5 h-5" />
-                Klimatyzacja • Rekuperacja • Pompy
+                Projektowanie • Doradztwo • Montaż
               </NavLink>
               <hr className="my-2 border-slate-800" />
               <a
