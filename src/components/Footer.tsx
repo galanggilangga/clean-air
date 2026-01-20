@@ -5,7 +5,7 @@ export default function Footer() {
   const links = [
     { label: 'O nas', path: '/o-nas' },
     { label: 'Czyszczenie • Serwis', path: '/uslugi' },
-    { label: 'Technologie', path: '/technologie' },
+    // { label: 'Technologie', path: '/technologie' },
     { label: 'Projektowanie • Doradztwo • Montaż', path: '/rekuperacja' },
   ];
 
@@ -56,7 +56,7 @@ export default function Footer() {
               <li className="flex items-center gap-2 text-sm">
                 <Snowflake className="w-4 h-4 text-emerald-400" />
                 <a href="tel:+48987654321" className="text-slate-400 hover:text-emerald-400 transition-colors">
-                  +48 987 654 321 <span className="text-xs text-emerald-500">Projektowanie i Montaż</span>
+                  +48 987 654 321 <span className="text-xs text-emerald-500">Projektowanie, Doradztwo i Montaż</span>
                 </a>
               </li>
               <li className="flex items-center gap-2 text-sm">
