@@ -6,7 +6,7 @@ export default function Footer() {
     { label: 'O nas', path: '/o-nas' },
     { label: 'Czyszczenie • Serwis', path: '/uslugi' },
     { label: 'Technologie', path: '/technologie' },
-    { label: 'Projektowanie • Montaż', path: '/rekuperacja' },
+    { label: 'Projektowanie • Doradztwo • Montaż', path: '/rekuperacja' },
   ];
 
   return (
