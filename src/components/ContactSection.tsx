@@ -1,6 +1,6 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
-import { Phone, Mail, Send, CheckCircle, AlertCircle } from 'lucide-react';
+import { Phone, Mail, Send, CheckCircle, AlertCircle, Wind, Snowflake } from 'lucide-react';
 
 export default function ContactSection() {
   const ref = useRef(null);
@@ -103,8 +103,30 @@ export default function ContactSection() {
   };
 
   const contactInfo = [
-    { icon: Phone, label: 'Telefon', value: '+48 123 456 789', href: 'tel:+48123456789' },
-    { icon: Mail, label: 'Email', value: 'kontakt@cleanair.pl', href: 'mailto:kontakt@cleanair.pl' },
+    { 
+      icon: Wind, 
+      label: 'Czyszczenie • Serwis', 
+      value: '+48 123 456 789', 
+      href: 'tel:+48123456789',
+      gradient: 'from-blue-500 to-indigo-500',
+      textColor: 'text-blue-400'
+    },
+    { 
+      icon: Snowflake, 
+      label: 'Projektowanie • Montaż', 
+      value: '+48 987 654 321', 
+      href: 'tel:+48987654321',
+      gradient: 'from-emerald-500 to-teal-500',
+      textColor: 'text-emerald-400'
+    },
+    { 
+      icon: Mail, 
+      label: 'Email', 
+      value: 'kontakt@cleanair.pl', 
+      href: 'mailto:kontakt@cleanair.pl',
+      gradient: 'from-indigo-500 to-violet-500',
+      textColor: 'text-indigo-400'
+    },
   ];
 
   const objectTypes = [
@@ -153,12 +175,12 @@ export default function ContactSection() {
                 transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
                 className="flex items-center gap-4 p-4 bg-slate-800/50 backdrop-blur-sm rounded-xl hover:bg-slate-800 transition-all border border-slate-700 group"
               >
-                <div className="w-12 h-12 bg-gradient-to-br from-indigo-500 to-violet-500 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                <div className={`w-12 h-12 bg-gradient-to-br ${item.gradient} rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform`}>
                   <item.icon className="w-5 h-5 text-white" />
                 </div>
                 <div>
-                  <p className="text-xs text-slate-500 font-medium">{item.label}</p>
-                  <p className="text-sm font-semibold text-white">{item.value}</p>
+                  <p className={`text-xs font-bold uppercase tracking-wider mb-1 ${item.textColor}`}>{item.label}</p>
+                  <p className="text-lg font-bold text-white group-hover:text-slate-200 transition-colors">{item.value}</p>
                 </div>
               </motion.a>
             ))}
