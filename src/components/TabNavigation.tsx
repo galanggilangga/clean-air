@@ -208,7 +208,7 @@ export default function TabNavigation() {
                   <Snowflake className="w-5 h-5 text-emerald-400" />
                   <div className="flex flex-col">
                     <span className="font-semibold text-sm">+48 987 654 321</span>
-                    <span className="text-[10px] text-emerald-400 uppercase tracking-wider font-bold">Projektowanie i Montaż</span>
+                    <span className="text-[10px] text-emerald-400 uppercase tracking-wider font-bold">Projektowanie • Doradztwo • Montaż</span>
                   </div>
                 </a>
               </div>

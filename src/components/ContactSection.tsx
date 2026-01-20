@@ -113,7 +113,7 @@ export default function ContactSection() {
     },
     { 
       icon: Snowflake, 
-      label: 'Projektowanie • Montaż', 
+      label: 'Projektowanie • Doradztwo • Montaż', 
       value: '+48 987 654 321', 
       href: 'tel:+48987654321',
       gradient: 'from-emerald-500 to-teal-500',

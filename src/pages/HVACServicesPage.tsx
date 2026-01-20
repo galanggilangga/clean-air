@@ -8,6 +8,7 @@ import {
 } from 'lucide-react';
 import heroBg from '../assets/images/hero-6.webp';
 import rekuperacjaImg from '../assets/images/hero-8.webp';
+import ContactSection from '../components/ContactSection';
 
 // Import local images from implementations
 const implementations = Object.values(import.meta.glob('../assets/images/implementations/*.webp', { eager: true, query: '?url', import: 'default' })) as string[];
@@ -404,51 +405,8 @@ export default function HVACServicesPage() {
         </div>
       </section>
 
-      {/* Final CTA - Simple and Elegant */}
-      <section className="py-20 bg-slate-900">
-        <div className="container mx-auto px-4 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center max-w-3xl mx-auto"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              Potrzebujesz Rekuperacji?
-            </h2>
-            <p className="text-xl text-slate-400 mb-10">
-              Skontaktuj się z nami. Bezpłatna wycena i profesjonalne doradztwo.
-            </p>
-            
-            <div className="flex justify-center">
-              <motion.a
-                href="tel:+48987654321"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="flex items-center gap-3 px-10 py-5 bg-gradient-to-r from-emerald-500 to-teal-500 text-white text-xl font-bold rounded-2xl shadow-2xl shadow-emerald-500/25 hover:shadow-emerald-500/40 transition-all"
-              >
-                <Phone className="w-7 h-7" />
-                +48 987 654 321
-              </motion.a>
-            </div>
-
-            <div className="flex flex-wrap justify-center gap-6 mt-10 text-slate-500 text-sm">
-              <div className="flex items-center gap-2">
-                <MapPin className="w-4 h-4" />
-                Kraków i okolice
-              </div>
-              <div className="flex items-center gap-2">
-                <Clock className="w-4 h-4" />
-                Wycena w 24h
-              </div>
-              <div className="flex items-center gap-2">
-                <Users className="w-4 h-4" />
-                Certyfikowani specjaliści
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+      {/* Contact Section */}
+      <ContactSection />
     </div>
   );
 }
