@@ -166,6 +166,29 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* Technology Header Section */}
+      <section className="relative py-24 bg-slate-900 overflow-hidden border-t border-slate-800">
+        <div 
+          className="absolute inset-0 bg-cover bg-center opacity-10"
+          style={{ backgroundImage: `url(${heroBg})` }}
+        ></div>
+        <div className="container mx-auto px-4 lg:px-8 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center max-w-4xl mx-auto"
+          >
+            <h2 className="text-4xl md:text-6xl font-bold text-white mb-6">
+              Nasze Technologie
+            </h2>
+            <p className="text-xl text-slate-300 leading-relaxed">
+              Wykorzystujemy najnowocześniejszy sprzęt światowych liderów branży czyszczenia wentylacji
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Rotobrush Section */}
       <section className="py-24 bg-slate-800">
         <div className="container mx-auto px-4 lg:px-8">
